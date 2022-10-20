@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-size: 100%;
+  background: url("./image/weather_bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
