@@ -4,7 +4,7 @@ import ReactLoading from "react-loading";
 
 const Loading = () => {
   return (
-    <Box display="flex" justifyContent="center" alignItems="center">
+    <Box display="flex" justifyContent="center" alignItems="center" height="100%">
       <ReactLoading
         type="spinningBubbles"
         color="#0000FF"

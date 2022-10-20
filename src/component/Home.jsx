@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, CardMedia } from "@mui/material";
-import { ThunderstormTwoTone } from "@mui/icons-material";
+import { CloudQueue, ThunderstormTwoTone } from "@mui/icons-material";
 import { keyframes } from "@mui/system";
 
 const move = keyframes`
@@ -58,18 +58,61 @@ const extraDataStyle = {
   transition: "all 0.3s ease",
 };
 
+let data = {
+  coord: {
+    lon: 77.2167,
+    lat: 28.6667,
+  },
+  weather: [
+    {
+      id: 721,
+      main: "Haze",
+      description: "haze",
+      icon: "50n",
+    },
+  ],
+  base: "stations",
+  main: {
+    temp: 30.05,
+    feels_like: 29.42,
+    temp_min: 30.05,
+    temp_max: 30.05,
+    pressure: 1013,
+    humidity: 37,
+  },
+  visibility: 4000,
+  wind: {
+    speed: 1.54,
+    deg: 140,
+  },
+  clouds: {
+    all: 40,
+  },
+  dt: 1666269094,
+  sys: {
+    type: 1,
+    id: 9165,
+    country: "IN",
+    sunrise: 1666227278,
+    sunset: 1666268221,
+  },
+  timezone: 19800,
+  id: 1273294,
+  name: "Delhi",
+  cod: 200,
+};
 const Home = ({ data }) => {
   // console.log(data);
 
   let extraData = {
-    Wind: data.current.wind_speed,
-    Pricip: data.current.precip,
-    Pressure: data.current.pressure,
-    Humidity: data.current.humidity,
-    Cloudcover: data.current.cloudcover,
-    feelslike: data.current.feelslike,
-    "Uv Index": data.current.uv_index,
-    Visibility: data.current.visibility,
+    "Min Temp": data.main.temp_min,
+    Wind: data.wind.speed,
+    Pressure: data.main.pressure,
+    Humidity: data.main.humidity,
+    Clouds: data.clouds.all,
+    feelslike: data.main.feels_likelike,
+    Visibility: data.visibility,
+    "Max Temp": data.main.temp_max,
   };
 
   return (
@@ -86,18 +129,19 @@ const Home = ({ data }) => {
           />
         </Box>
         <Box style={style2}>
-          <CardMedia
-            component="img"
-            sx={{ width: "100px", borderRadius: "10px" }}
-            image={data.current.weather_icons[0]}
-          />
+          <CloudQueue sx={{ fontSize: '100px'}}/>
           <Typography variant="h6" sx={{ textShadow: "none" }}>
-            {data.current.weather_descriptions[0]}
+            {data.weather[0].main}
           </Typography>
-          <Typography variant="h1" sx={{ fontSize: { xs: "50px", sm: "90px" } }}>
-            {data.current.temperature}&#176;C
+          <Typography
+            variant="h1"
+            sx={{ fontSize: { xs: "50px", sm: "90px" } }}
+          >
+            {Math.round(data.main.temp)}&#176;C
           </Typography>
-          <Typography variant="h6">{data.request.query}</Typography>
+          <Typography variant="h6">
+            {data.name}, {data.sys.country}
+          </Typography>
         </Box>
       </Box>
       <Box

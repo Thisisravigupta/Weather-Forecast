@@ -33,7 +33,7 @@ function App() {
   const handleSearch = (e) => {
     if (e.key === "Enter") {
       fetch(
-        `http://api.weatherstack.com/current?access_key=bbfca426ee7a3ed9c7eff28f4b9a9fa9&query=${SearchInput}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${SearchInput}&units=metric&APPID=88da68f4a9042932975056985cbadaf2`
       )
         .then((res) => res.json())
         .then((result) => {
